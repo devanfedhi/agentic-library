@@ -1,4 +1,4 @@
 interface:
   display_name: "Commit"
-  short_description: "Create conventional scoped commit messages"
-  default_prompt: "Use $commit to create a conventional scoped Git commit."
+  short_description: "Create conventional commits; add --push to push"
+  default_prompt: "Use $commit to stage changes, create a conventional scoped Git commit, and optionally push with --push."

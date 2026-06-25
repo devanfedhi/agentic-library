@@ -1,6 +1,6 @@
 ---
 name: commit
-description: Create Git commits with conventional scoped messages in the exact format `type(scope): commit message`. Use when the user asks Codex to create a commit, draft a commit message, choose a conventional commit type or scope, or commit current changes with optional user-provided type, scope, and message.
+description: Create Git commits with conventional scoped messages in the exact format `type(scope): commit message`. Use when the user asks Codex to create a commit, draft a commit message, choose a conventional commit type or scope, commit current changes with optional user-provided type/scope/message, or push after committing.
 ---
 
 # Commit Message
@@ -20,7 +20,8 @@ Use conventional commit types such as `feat`, `fix`, `chore`, `docs`, `style`, `
 1. Inspect the Git state before committing.
    - Use `git status --short`.
    - Use `git diff --stat`, `git diff --staged --stat`, and focused diffs as needed.
-   - If staged changes exist, treat the staged set as the intended commit unless the user asks otherwise.
+   - Treat all current tracked, untracked, staged, and unstaged changes as the intended commit unless the user explicitly asks for a narrower pathspec.
+   - If the working tree is clean, say there is nothing to commit.
 
 2. Gather fields.
    - If the user provides `type`, `scope`, and message, preserve them except for light formatting.
@@ -35,9 +36,15 @@ Use conventional commit types such as `feat`, `fix`, `chore`, `docs`, `style`, `
 
 4. Commit only when the user requested a commit.
    - Show or mention the selected message before running `git commit` when practical.
-   - Do not stage unrelated files automatically unless the user explicitly asks.
-   - If staged changes exist, commit only the staged changes unless the user asks to stage more.
-   - If nothing is staged and the user clearly asks to commit all current changes, stage the relevant files and commit them.
+   - Stage all unstaged and untracked changes before committing; do not ask for separate permission just to stage.
+   - Use `git add -A` by default, or `git add -A -- <pathspec>` when the user explicitly limits the commit to specific files or directories.
+   - Re-check `git status --short` and `git diff --staged --stat` after staging so the committed set is visible before the commit.
+
+5. Push only when requested with a push flag.
+   - Accept `--push`, `push`, `push: true`, or natural language such as "commit and push" as a request to push after committing.
+   - After a successful commit, run `git push`.
+   - If the branch has no upstream, use `git push -u origin HEAD`.
+   - If the push fails, report the failure and leave the commit in place.
 
 ## Inference Rules
 
