@@ -1,0 +1,4 @@
+interface:
+  display_name: "Commit"
+  short_description: "Create conventional scoped commit messages"
+  default_prompt: "Use $commit to create a conventional scoped Git commit."
