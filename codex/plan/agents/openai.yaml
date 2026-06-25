@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan"
+  short_description: "Create, revise, save, or execute task plans"
+  default_prompt: "Use $plan to create a lean phase-based implementation plan, then let me revise, execute, save, or close it."
