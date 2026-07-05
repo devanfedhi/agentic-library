@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Pull Request"
+  short_description: "Review changes, link an issue, and confirm PRs"
+  default_prompt: "Use $pr-create to ask for the related issue, review this feature branch, preview the pull request, and ask me to confirm before creating it."
