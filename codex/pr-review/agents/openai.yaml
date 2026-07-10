@@ -1,4 +1,4 @@
 interface:
   display_name: "Review Pull Request"
   short_description: "Review a PR and optionally post GitHub feedback"
-  default_prompt: "Use $pr-review to inspect this pull request, list review findings first, prefer inline comments, and ask me to confirm before posting any GitHub comments."
+  default_prompt: "Use $pr-review to inspect this pull request, list review findings first, default to inline comments for nearly every finding, and ask me to confirm before posting any GitHub comments."
